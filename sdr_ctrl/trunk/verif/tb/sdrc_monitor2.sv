@@ -4,7 +4,7 @@ class sdrcMon2;
     int notExecTestCasesCount = 0;
     int testCasesCount = 0;
     
-    function new(virtual inft_sdrcntrl inft,sdrcSB sb);
+    function new(virtual inft_sdrcntrl inft,sdrcSB2 sb);
         $display("Creating SDRC Monitor");
         this.sb = sb;
         this.inft = inft; 
