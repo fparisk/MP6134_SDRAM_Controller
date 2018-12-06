@@ -20,7 +20,7 @@ class sdram_coverage;
 			bins bank3 = {3};
     }
 
-    sdram_addr: coverpoint intf.sdr_addr; 
+    sdram_addr: coverpoint intf.sdram_intf.sdr_addr; 
 
     sdram_cmd: coverpoint {intf.sdram_intf.sdr_cas_n,intf.sdram_intf.sdr_ras_n,intf.sdram_intf.sdr_we_n,intf.sdram_intf.sdr_cs_n}
     {
