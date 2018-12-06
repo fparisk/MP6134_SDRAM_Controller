@@ -12,7 +12,7 @@ class sdram_coverage;
 
   covergroup Sdram_Coverage @(intf.sdram_clk);
 
-    bank: coverpoint intf.intf_sdram.sdr_ba
+    bank: coverpoint intf.sdram_intf.sdr_ba
     {
       bins bank0 = {0};
 			bins bank1 = {1};
@@ -22,7 +22,7 @@ class sdram_coverage;
 
     sdram_addr: coverpoint intf.sdr_addr; 
 
-    sdram_cmd: coverpoint {intf.intf_sdram.sdr_cas_n,intf.intf_sdram.sdr_ras_n,intf.intf_sdram.sdr_we_n,intf.intf_sdram.sdr_cs_n}
+    sdram_cmd: coverpoint {intf.sdram_intf.sdr_cas_n,intf.sdram_intf.sdr_ras_n,intf.sdram_intf.sdr_we_n,intf.sdram_intf.sdr_cs_n}
     {
       bins NOP			         = {4'b1110};
 			bins ACTIVE 		       = {4'b1010};
