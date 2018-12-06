@@ -8,7 +8,7 @@ program testcase(inft_sdrcntrl intf);
   initial 
   begin
     // set test execution count
-    env.mon.testCasesCount = 7;
+    env.mon.testCasesCount = 8;
     env.mon.notExecTestCasesCount = env.mon.testCasesCount;
 
     // reset
@@ -16,13 +16,15 @@ program testcase(inft_sdrcntrl intf);
     env.drv.reset();
     
     // Tests to execute
+    tc8_configurable_data_width();
+    tc7_4_bank_feature();
+
     tc1_single_read();
     tc2_x2_read();
     tc3_page_cross_over();
     tc5_x24_Write_and_Read_diff_row_bank();
     tc4_x4_Write_Read();
     tc6_write_read_different_order();
-    tc7_page_cross_over();
 
     // check test exec. results
     env.mon.Check();
@@ -201,28 +203,99 @@ program testcase(inft_sdrcntrl intf);
     end
   endtask
 
-  // Case:7 Diff row, bank and column
-  task tc7_prog_col();
+  // Case:7 Four Bank feature
+  task tc7_4_bank_feature();
     begin
       
       $display("----------------------------------------");
-      $display(" Case-7 Diff row, bank and column        ");
+      $display(" Case-7 Four Bank feature               ");
       $display("----------------------------------------");
-
-      env.drv.BurstWrite_diff_col_row_bank(,,22);  
-      env.drv.BurstWrite_diff_col_row_bank(,,240);  
-      env.drv.BurstWrite_diff_col_row_bank(,,256);  
-
-      env.mon.BurstRead();  
-      env.mon.BurstRead();  
+ 
+      env.drv.BurstWrite_diff_col_row_bank_data(1,0,0,1,6);	// Row:1, Bank:0, Col:0, BurstSize:1, Data:6
       env.mon.BurstRead();
+      if (intf.sdram_intf.sdr_ba != 0) begin
+   	env.mon.sb.ErrCnt ++;
+	$display("ERROR, incorrect programmed bank!!");
+      end
+
+      #1000;
+
+      env.drv.BurstWrite_diff_col_row_bank_data(1,0,1,1,6);	// Row:1, Bank:1, Col:0, BurstSize:1, Data:6
+      env.mon.BurstRead();
+      if (intf.sdram_intf.sdr_ba != 1) begin
+   	env.mon.sb.ErrCnt ++;
+	$display("ERROR, incorrect programmed bank!!");
+      end
+
+      #1000;
+
+      env.drv.BurstWrite_diff_col_row_bank_data(1,0,2,1,6);	// Row:1, Bank:2, Col:0, BurstSize:1, Data:6
+      if (intf.sdram_intf.sdr_ba != 2) begin
+   	env.mon.sb.ErrCnt ++;
+	$display("ERROR, incorrect programmed bank!!");
+      end
+
+      #1000;
+
+      env.drv.BurstWrite_diff_col_row_bank_data(1,0,3,1,6);	// Row:1, Bank:3, Col:0, BurstSize:1, Data:6
+      env.mon.BurstRead();
+      if (intf.sdram_intf.sdr_ba != 3) begin
+   	env.mon.sb.ErrCnt ++;
+	$display("ERROR, incorrect programmed bank!!");
+      end
       
       env.mon.notExecTestCasesCount = env.mon.notExecTestCasesCount -1;
       
       $display("-------------------------------------- ");
-      $display(" End-7 Diff row, bank and column");
+      $display(" End-7 Four Bank feature               ");
       $display("-------------------------------------- ");
     end
   endtask   
+
+  // Case:8 Configurable data width
+  task tc8_configurable_data_width();
+    logic[31:0] read_data;
+    logic[31:0] expected_data;
+
+    begin
+      
+      $display("----------------------------------------");
+      $display(" Case-8 Configurable data width         ");
+      $display("----------------------------------------");
+ 
+      // 32'h80008080 -> 32bits:2147516544, 16bits:3289, 8bits:128
+
+`ifdef SDR_32BIT
+      expected_data = 2147516544;
+`elsif SDR_16BIT
+      expected_data = 3289;
+`elsif SDR_8BIT
+      expected_data = 128;
+`endif
+
+      env.drv.BurstWrite_diff_col_row_bank_data(,,,1,32'h80008080);
+      env.mon.BurstReadRetVal(read_data);
+      
+      if (read_data != expected_data) begin
+   	env.mon.sb.ErrCnt ++;
+	$display("ERROR, incorrect programmed data!!");
+        $display("OUT DATA: %d", read_data);
+        $display("EXPECTED DATA: %d", expected_data);
+      end
+
+      #1000;
+
+      env.drv.BurstWrite_diff_col_row_bank_data(,,,1,32'h00000008);
+      env.mon.BurstReadRetVal(read_data);
+      
+      if (read_data != 8) begin
+   	env.mon.sb.ErrCnt ++;
+	$display("ERROR, incorrect programmed data!!");
+        $display("OUT DATA: %d", read_data);
+        $display("EXPECTED DATA: %d", 8);
+      end
+  
+    end
+  endtask 
 
 endprogram
