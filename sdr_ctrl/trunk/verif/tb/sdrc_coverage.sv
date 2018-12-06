@@ -12,7 +12,7 @@ class sdram_coverage;
 
   covergroup sdram_coverage @(intf.sdram_clk);
 
-    bank: coverpoint intf.sdr_ba
+    bank: coverpoint intf.sdrc_intf.sdram_intf.sdr_ba
     {
       bins bank0 = {0};
 			bins bank1 = {1};
