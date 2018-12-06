@@ -16,14 +16,16 @@ endproperty
 property wb_init_1;
   @(posedge whitebox_if.wb_clk_i)
   $rose(whitebox_if.wb_rst_i)           |->
-  whitebox_if.wb_rst_i[*1:$] |-> 
-  (whitebox_if.wb_stb_i==0) and (whitebox_if.wb_cyc_i==0);
+  whitebox_if.wb_rst_i[*1:$] |->
+  (wb_ack_o == 0); 
+  //(whitebox_if.wb_stb_i==0) and (whitebox_if.wb_cyc_i==0); // must be fixed for project 3
 endproperty
 
 property wb_init_2;
   @(posedge whitebox_if.wb_clk_i)
   $fell(whitebox_if.wb_rst_i)           |-> 
-  $isunknown(whitebox_if.wb_rst_i && whitebox_if.wb_rst_i) == 0;
+  $isunknown(whitebox_if.wb_ack_o) == 0;
+  //$isunknown(whitebox_if.wb_rst_i && whitebox_if.wb_rst_i) == 0; // must be fixed for project 3
 endproperty
 
 // Property of Rule 3.05 Reset operation
