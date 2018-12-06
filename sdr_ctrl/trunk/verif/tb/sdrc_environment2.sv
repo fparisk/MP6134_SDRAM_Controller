@@ -5,7 +5,7 @@ class sdrcEnv2 extends sdrcEnv;
     sdram_coverage sc;
     //virtual inft_sdrcntrl inft; // Deprecated for second project
 
-    function new (virtual inft_sdrcntrl inft,);
+    function new (virtual inft_sdrcntrl inft);
       super.new(inft);
       $display("Creating SDRC Environment");
       super.sb = new();
