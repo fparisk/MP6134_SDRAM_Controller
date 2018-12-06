@@ -57,7 +57,7 @@ class sdram_coverage;
   endgroup
   
  
-  covergroup Wishbone_Coverage @(intf.sysclk);
+  covergroup Wishbone_Coverage @(intf.sys_clk);
 
     wishbone_read_write	: coverpoint {intf.wb_intf.wb_stb_i, intf.wb_intf.wb_cyc_i, intf.wb_intf.wb_we_i}
 		{
