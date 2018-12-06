@@ -1,15 +1,7 @@
 class sdram_coverage;
 
   virtual inft_sdrcntrl intf;
-  
-  covergroup cov0 @(intf.sdram_clk);
-    // Feature_empty: coverpoint intf.empty;
-    // Feature_full: coverpoint intf.full;
-    // Feature_data: coverpoint intf.data_in {option.auto_bin_max=8;}
-    // Feature_empty_seq: coverpoint intf.empty {bins seq = (0=>1=>0);}
-    // Feature_full_seq: coverpoint intf.full {bins seq = (0=>1=>0);}
-  endgroup
-
+ 
   covergroup Sdram_Coverage @(intf.sdram_clk);
 
     bank: coverpoint intf.sdram_intf.sdr_ba
@@ -64,11 +56,50 @@ class sdram_coverage;
 
   endgroup
   
+ 
+  covergroup Wishbone_Coverage @(intf.sysclk);
 
+    wishbone_read_write	: coverpoint {intf.wb_intf.wb_stb_i, intf.wb_intf.wb_cyc_i, intf.wb_intf.wb_we_i}
+		{
+			bins wishbone_read  = {3'b110};
+			bins wishbone_write = {3'b111};
+		}
+
+
+    `ifdef 8_BIT_COL
+        column	:	coverpoint sdram_ctrl_intf.wb_addr_i[7:0];   // 8 bits para la columna
+        row		:  	coverpoint sdram_ctrl_intf.wb_addr_i[21:10]; // 12 bits para la fila
+        bank	:	coverpoint sdram_ctrl_intf.wb_addr_i[9:8]      // 2 bits para el bank 
+    `elsif 9_BIT_COL
+        column	:	coverpoint sdram_ctrl_intf.wb_addr_i[8:0];
+        row		:  	coverpoint sdram_ctrl_intf.wb_addr_i[22:11];
+        bank	:	coverpoint sdram_ctrl_intf.wb_addr_i[10:9]
+    `elsif 10_BIT_COL
+        column	:	coverpoint sdram_ctrl_intf.wb_addr_i[9:0];
+        row		:  	coverpoint sdram_ctrl_intf.wb_addr_i[23:12];
+        bank	:	coverpoint sdram_ctrl_intf.wb_addr_i[11:10]
+    `else
+        column	:	coverpoint sdram_ctrl_intf.wb_addr_i[10:0];
+        row		:  	coverpoint sdram_ctrl_intf.wb_addr_i[24:13];
+        bank	:	coverpoint sdram_ctrl_intf.wb_addr_i[12:11]
+    `endif
+    {
+      bins bank0	= {0};
+      bins bank1	= {1};
+      bins bank2	= {2};
+      bins bank3	= {3};
+    }
+
+		wb_all	: cross wishbone_read_write, row, column, bank;
+
+    
+
+  endgroup
     
   function new(virtual inft_sdrcntrl intf);
     this.intf = intf;
-    Sdram_Coverage =new();
+    Sdram_Coverage    =new();
+    Wishbone_Coverage =new();
     // cov1 =new();
   endfunction
 
