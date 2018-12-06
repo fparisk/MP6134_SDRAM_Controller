@@ -17,7 +17,7 @@ property wb_init_1;
   @(posedge whitebox_if.wb_clk_i)
   $rose(whitebox_if.wb_rst_i)           |->
   whitebox_if.wb_rst_i[*1:$] |->
-  (wb_ack_o == 0); 
+  (whitebox_if.wb_ack_o == 0); 
   //(whitebox_if.wb_stb_i==0) and (whitebox_if.wb_cyc_i==0); // must be fixed for project 3
 endproperty
 
