@@ -1,6 +1,13 @@
 class sdram_coverage;
 
   virtual intf_whitebox intf;
+
+    
+  function new(virtual intf_whitebox intf);
+    this.intf = intf;
+    sdram_coverage =new();
+    // cov1 =new();
+  endfunction
   
   covergroup cov0 @(intf.sdram_clk);
     // Feature_empty: coverpoint intf.empty;
@@ -12,7 +19,7 @@ class sdram_coverage;
 
   covergroup sdram_coverage @(intf.sdram_clk);
 
-    bank: coverpoint intf.sdram_intf.sdr_ba
+    bank: coverpoint intf.sdr_ba
     {
       bins bank0 = {0};
 			bins bank1 = {1};
@@ -64,12 +71,7 @@ class sdram_coverage;
 
   endgroup
   
-  
-  function new(virtual intf_whitebox intf);
-    this.intf =intf;
-    sdram_coverage =new();
-    // cov1 =new();
-  endfunction
+
 
 
 endclass
