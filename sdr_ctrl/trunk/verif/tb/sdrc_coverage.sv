@@ -34,7 +34,7 @@ class sdram_coverage;
 			bins LOADMODEREGISTER	 = {4'b0000};
     }
 
-    read_write_x_bank_x_addr : cross cmd, bank, addr
+    read_write_x_bank_x_addr : cross sdram_cmd, bank, sdram_addr
 		{
 `ifdef 8_BIT_COL
 			bins address_permitted 				= binsof(addr) intersect {[0:255]};
