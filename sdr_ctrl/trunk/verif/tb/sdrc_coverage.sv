@@ -37,19 +37,19 @@ class sdram_coverage;
     read_write_x_bank_x_addr : cross sdram_cmd, bank, sdram_addr
 		{
 `ifdef 8_BIT_COL
-			bins address_permitted 				= binsof(addr) intersect {[0:255]};
-			bins address_forbidden 			= binsof(addr) intersect {[256:$]};
+			bins address_permitted 				= binsof(sdram_addr) intersect {[0:255]};
+			bins address_forbidden 			= binsof(sdram_addr) intersect {[256:$]};
 `elsif 9_BIT_COL
-			bins address_permitted 				= binsof(addr) intersect {[0:511]};
-			bins address_forbidden 			= binsof(addr) intersect {[512:$]};
+			bins address_permitted 				= binsof(sdram_addr) intersect {[0:511]};
+			bins address_forbidden 			= binsof(sdram_addr) intersect {[512:$]};
 `elsif 10_BIT_COL
-			bins address_permitted 				= binsof(addr) intersect {[0:1023]};
-			bins address_forbidden 			= binsof(addr) intersect {[1024:$]};
+			bins address_permitted 				= binsof(sdram_addr) intersect {[0:1023]};
+			bins address_forbidden 			= binsof(sdram_addr) intersect {[1024:$]};
 `else
-			bins allowed_addrs 				= binsof(addr) intersect {[0:2047]};
-			bins address_forbidden 			= binsof(addr) intersect {[2048:$]};
+			bins allowed_addrs 				= binsof(sdram_addr) intersect {[0:2047]};
+			bins address_forbidden 			= binsof(sdram_addr) intersect {[2048:$]};
 `endif
-			ignore_bins cmdsNotNeededOrIgnored = binsof(cmd) intersect 
+			ignore_bins cmdsNotNeededOrIgnored = binsof(sdram_cmd) intersect 
 			{
 				4'b1110, // NOP
 				4'b1010, // ACTIVE
