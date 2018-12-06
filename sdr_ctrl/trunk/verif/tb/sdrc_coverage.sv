@@ -1,6 +1,6 @@
 class sdram_coverage;
 
-  virtual intf_whitebox intf;
+  virtual inft_sdrcntrl intf;
   
   covergroup cov0 @(intf.sdram_clk);
     // Feature_empty: coverpoint intf.empty;
@@ -10,9 +10,9 @@ class sdram_coverage;
     // Feature_full_seq: coverpoint intf.full {bins seq = (0=>1=>0);}
   endgroup
 
-  covergroup sdram_coverage @(intf.sdram_clk);
+  covergroup Sdram_Coverage @(intf.sdram_clk);
 
-    bank: coverpoint intf.sdr_ba
+    bank: coverpoint intf.intf_sdram.sdr_ba
     {
       bins bank0 = {0};
 			bins bank1 = {1};
@@ -22,7 +22,7 @@ class sdram_coverage;
 
     sdram_addr: coverpoint intf.sdr_addr; 
 
-    sdram_cmd: coverpoint {intf.sdr_cas_n,intf.sdr_ras_n,intf.sdr_we_n,intf.sdr_cs_n}
+    sdram_cmd: coverpoint {intf.intf_sdram.sdr_cas_n,intf.intf_sdram.sdr_ras_n,intf.intf_sdram.sdr_we_n,intf.intf_sdram.sdr_cs_n}
     {
       bins NOP			         = {4'b1110};
 			bins ACTIVE 		       = {4'b1010};
@@ -66,9 +66,9 @@ class sdram_coverage;
   
 
     
-  function new(virtual intf_whitebox intf);
+  function new(virtual inft_sdrcntrl intf);
     this.intf = intf;
-    sdram_coverage =new();
+    Sdram_Coverage =new();
     // cov1 =new();
   endfunction
 
