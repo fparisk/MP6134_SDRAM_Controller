@@ -11,6 +11,7 @@
 ../tb/addressStimulus.sv
 ../tb/pageCrossOverStimulus.sv
 ../tb/sdrc_driver2.sv
+../tb/sdrc_coverage.sv
 ../tb/sdrc_environment.sv
 ../tb/sdrc_environment2.sv
 ../tb/Test_proyecto3.sv
