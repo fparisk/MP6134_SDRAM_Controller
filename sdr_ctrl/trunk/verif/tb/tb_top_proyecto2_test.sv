@@ -135,7 +135,7 @@ module top();
     // Run Test Cases
     /////////////////////////////////////////////////////////////////////////
 
-    testcase test1(sdrc_intf);
+    testcase2 test2(sdrc_intf);
     
 
 endmodule

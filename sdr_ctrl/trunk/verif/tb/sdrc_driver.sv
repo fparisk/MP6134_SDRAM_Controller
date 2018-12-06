@@ -2,11 +2,6 @@ class sdrcDrv;
     sdrcSB sb;
     virtual inft_sdrcntrl inft;
 
-    // Stimulus objects
-    diffBankAndRowStimulus diff_bank_row_stim        = new();
-    addrStimulus rnd_addr_stim                       = new();
-    pageCrossOverStimulus rand_pco_stim  = new();
-
     function new(virtual inft_sdrcntrl inft,sdrcSB sb);
         $display("Creating SDRC Driver");
         this.sb = sb;
@@ -39,13 +34,11 @@ class sdrcDrv;
     endtask
 
     task BurstWrite();
-        // input [31:0] Address;  // Deprecated for second project
-        // input [7:0]  bl;       // Deprecated for second project
-        input int unsigned Address;  
-        input int unsigned bl; 
+        input [31:0] Address;  // Deprecated for second project
+        input [7:0]  bl;       // Deprecated for second project
         int i;
         begin
-            // sb.dir.push_back(Address); // Deprecated for second project
+            sb.dir.push_back(Address); // Deprecated for second project
             sb.burstLenght.push_back(bl);
             
             @ (negedge this.inft.sys_clk);
@@ -57,9 +50,7 @@ class sdrcDrv;
                 this.inft.wb_intf.wb_sel_i        = 4'b1111;
                 this.inft.wb_intf.wb_addr_i       = Address[31:2]+i;
                 this.inft.wb_intf.wb_dat_i        = $random & 32'hFFFFFFFF;
-                // sb.store.push_back(this.inft.wb_intf.wb_dat_i); // Deprecated for second project
-                sb.dir.push_back(this.inft.wb_intf.wb_addr_i);
-                sb.store[this.inft.wb_intf.wb_addr_i] = this.inft.wb_intf.wb_dat_i;
+                sb.store.push_back(this.inft.wb_intf.wb_dat_i); // Deprecated for second project
 
                 do begin
                     @ (posedge this.inft.sys_clk);
@@ -76,43 +67,6 @@ class sdrcDrv;
             this.inft.wb_intf.wb_dat_i        = 'hx;       
         end
         
-    endtask
-
-    // Write to address with Different Bank and Row
-    task BurstWrite_diff_row_bank();
-        logic  [7:0] burst_size;
-
-        begin
-            if(diff_bank_row_stim.randomize())
-            begin
-                burst_size = diff_bank_row_stim.bank + 8'h4;
-                this.BurstWrite({diff_bank_row_stim.row, diff_bank_row_stim.bank, 8'h00,2'b00},     // address
-                                burst_size);                                                        // burst size
-            end
-        end
-    endtask
-
-    // Write to rndm address
-    task BurstWrite_rnd_addr();
-        begin
-            if(rnd_addr_stim.randomize())
-            begin
-                this.BurstWrite(rnd_addr_stim.address,          // address
-                                rnd_addr_stim.burst_size);      // burst size
-            end
-        end
-    endtask
-
-    // Page cross over 
-    task BurstWrite_page_cross_over();
-        begin
-            if(rand_pco_stim.randomize())
-            begin
-		rand_pco_stim.generatePageCrossOverAddress();
-                this.BurstWrite({rand_pco_stim.row, rand_pco_stim.bank, rand_pco_stim.column,2'b00},    // address
-                                rand_pco_stim.burst_size);                                              // burst size
-            end
-        end
     endtask
 
 endclass

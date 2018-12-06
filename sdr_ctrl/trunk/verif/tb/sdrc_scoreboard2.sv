@@ -1,4 +1,4 @@
-class sdrcSB;
+class sdrcSB2;
     //int store[$]; // Deprecated for second project.
     int unsigned store[int]; // Modified for aleatory tests
     int unsigned dir[$];

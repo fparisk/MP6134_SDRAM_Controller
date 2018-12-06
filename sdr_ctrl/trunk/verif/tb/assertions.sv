@@ -16,14 +16,16 @@ endproperty
 property wb_init_1;
   @(posedge whitebox_if.wb_clk_i)
   $rose(whitebox_if.wb_rst_i)           |->
-  whitebox_if.wb_rst_i[*1:$] |-> 
-  (whitebox_if.wb_stb_i==0) and (whitebox_if.wb_cyc_i==0);
+  whitebox_if.wb_rst_i[*1:$] |->
+  (whitebox_if.wb_ack_o == 0); 
+  //(whitebox_if.wb_stb_i==0) and (whitebox_if.wb_cyc_i==0); // must be fixed for project 3
 endproperty
 
 property wb_init_2;
   @(posedge whitebox_if.wb_clk_i)
   $fell(whitebox_if.wb_rst_i)           |-> 
-  $isunknown(whitebox_if.wb_rst_i && whitebox_if.wb_rst_i) == 0;
+  $isunknown(whitebox_if.wb_ack_o) == 0;
+  //$isunknown(whitebox_if.wb_rst_i && whitebox_if.wb_rst_i) == 0; // must be fixed for project 3
 endproperty
 
 // Property of Rule 3.05 Reset operation
@@ -55,6 +57,27 @@ property wb_termination;
   $rose(whitebox_if.wb_ack_o);
  endproperty
 
+// CAS Latency Check
+property sdram_CAS_latency_3_cycles;
+  @(negedge whitebox_if.sdram_clk)
+  $rose(!intf_whitebox.sdr_cas_n && intf_whitebox.sdr_ras_n && intf_whitebox.sdr_we_n) |->
+  ((whitebox_if.cfg_sdr_mode_reg) == 13'h033)                                          |-> ##3
+  $isunknown(whitebox_if.sdr_dq) == 0;
+endproperty
+
+// CAS Latency Check
+property sdram_CAS_latency_2_cycles;
+  @(negedge whitebox_if.sdram_clk)
+  $rose(!intf_whitebox.sdr_cas_n && intf_whitebox.sdr_ras_n && intf_whitebox.sdr_we_n) |->
+  ((whitebox_if.cfg_sdr_mode_reg) == 13'h023)                                          |-> ##2
+  $isunknown(whitebox_if.sdr_dq) == 0;
+endproperty
+
+// CAS Latency Check
+property sdram_CAS_latency_1_cycles;
+  @(negedge whitebox_if.sdram_clk)
+  (whitebox_if.cfg_sdr_mode_reg) != 13'h013;
+endproperty
 
 // Sdram init assertion
 sdram_initialization: assert property (sdram_init) else $error ("SDRAM_INIT FAILED!!!!!!!!!");
@@ -74,5 +97,9 @@ wb_SRW_RMW: assert property(wb_tci) else $error ("Wishbone Protocol Rule 3.25 vi
 // Rule 3.35
 wb_AND: assert property(wb_termination) else $error ("Wishbone Protocol Rule 3.35 violated");
 
+// CAS Latency
+sdram_CasLatency_3: assert property(sdram_CAS_latency_3_cycles) else $error ("3 cycle CAS latency violated.");
+sdram_CasLatency_2: assert property(sdram_CAS_latency_2_cycles) else $error ("2 cycle CAS latency violated.");
+sdram_CasLatency_1: assert property(sdram_CAS_latency_1_cycles) else $error ("1 cycle CAS latency is invalid.");
 
 endmodule
