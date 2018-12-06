@@ -1,4 +1,4 @@
-class sdrcDrv;
+class sdrcDrv2;
     sdrcSB sb;
     virtual inft_sdrcntrl inft;
 

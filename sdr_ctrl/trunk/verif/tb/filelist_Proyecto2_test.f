@@ -7,10 +7,13 @@
 ../tb/diffBankAndRowStimulus.sv
 ../tb/sdrc_interface.sv
 ../tb/sdrc_scoreboard.sv
+../tb/sdrc_scoreboard2.sv
 ../tb/sdrc_monitor.sv
+../tb/sdrc_monitor2.sv
 ../tb/addressStimulus.sv
 ../tb/pageCrossOverStimulus.sv
 ../tb/sdrc_driver.sv
+../tb/sdrc_driver2.sv
 ../tb/sdrc_environment.sv
 ../tb/sdrc_environment2.sv
 ../tb/Test_proyecto2.sv
