@@ -1,5 +1,5 @@
-class sdrcMon;
-    sdrcSB sb;
+class sdrcMon2;
+    sdrcSB2 sb;
     virtual inft_sdrcntrl inft;
     int notExecTestCasesCount = 0;
     int testCasesCount = 0;
