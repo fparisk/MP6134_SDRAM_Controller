@@ -57,23 +57,23 @@ property wb_termination;
 
 // CAS Latency Check
 property sdram_CAS_latency_3_cycles;
-  @(posedge whitebox_if.wb_clk_i)
+  @(negedge whitebox_if.sdram_clk)
   $rose(!intf_whitebox.sdr_cas_n && intf_whitebox.sdr_ras_n && intf_whitebox.sdr_we_n) |->
-  ((whitebox_if.cfg_sdr_mode_reg) == 13'h033)                                          |-> ##5
+  ((whitebox_if.cfg_sdr_mode_reg) == 13'h033)                                          |-> ##3
   $isunknown(whitebox_if.sdr_dq) == 0;
 endproperty
 
 // CAS Latency Check
 property sdram_CAS_latency_2_cycles;
-  @(posedge whitebox_if.wb_clk_i)
+  @(negedge whitebox_if.sdram_clk)
   $rose(!intf_whitebox.sdr_cas_n && intf_whitebox.sdr_ras_n && intf_whitebox.sdr_we_n) |->
-  ((whitebox_if.cfg_sdr_mode_reg) == 13'h023)                                          |-> ##3
+  ((whitebox_if.cfg_sdr_mode_reg) == 13'h023)                                          |-> ##2
   $isunknown(whitebox_if.sdr_dq) == 0;
 endproperty
 
 // CAS Latency Check
 property sdram_CAS_latency_1_cycles;
-  @(posedge whitebox_if.wb_clk_i)
+  @(negedge whitebox_if.sdram_clk)
   (whitebox_if.cfg_sdr_mode_reg) != 13'h013;
 endproperty
 
