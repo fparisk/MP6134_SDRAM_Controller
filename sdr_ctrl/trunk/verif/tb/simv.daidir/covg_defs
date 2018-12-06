@@ -1,0 +1,156 @@
+global coverage_group 0 $unit::sdram_coverage::cov0 __coverage_sdram_coverage.cov0 unused_sdram_coverage_cov0_loop_label $unit 0 1 0 1 $unit::../../rtl/core/sdrc_bank_ctl.v::../../rtl/core/sdrc_bank_fsm.v...@2559226825 ( )
+ 1 1
+ 105 /mnt/vol_NFS_Zener/WD_ESPEC/fparis/MP6134_SDRAM_Controller/sdr_ctrl/trunk/verif/tb/../tb/sdrc_coverage.sv
+ 5 0 0 0 1 0 0 0 0  1
+0
+26 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0 0
+ 0
+ 0 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+0
+0
+0
+64
+0
+ 0
+
+0
+0
+0
+end_coverage_group
+global coverage_group 0 $unit::sdram_coverage::Sdram_Coverage __coverage_sdram_coverage.Sdram_Coverage unused_sdram_coverage_Sdram_Coverage_loop_label $unit 0 1 0 1 $unit::../../rtl/core/sdrc_bank_ctl.v::../../rtl/core/sdrc_bank_fsm.v...@2559226825 ( )
+ 0 13 0 0 0 1 0 0 0 0  1
+0
+26 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0 0
+ 0
+ 0 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+0
+0
+0
+64
+0
+ 0
+
+3
+0
+1
+ 4 bank 16 0 0 0 70 sdram_coverage::_vcs_unit__2559226825_sdram_coverage_Sdram_Coverage_fn 70 sdram_coverage::_vcs_unit__2559226825_sdram_coverage_Sdram_Coverage_fn 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 0 2 2 0 0 1 0 1 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 4 1 1 0 0 1 1 5 bank0 17 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 72 sdram_coverage::_vcs_unit__2559226825_sdram_coverage_Sdram_Coverage_fn_0 0 0 0 0 0 0 0
+ 1 1 0 0 1 1 5 bank1 18 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 72 sdram_coverage::_vcs_unit__2559226825_sdram_coverage_Sdram_Coverage_fn_1 0 0 0 0 0 0 0
+ 1 1 0 0 1 1 5 bank2 19 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 72 sdram_coverage::_vcs_unit__2559226825_sdram_coverage_Sdram_Coverage_fn_2 0 0 0 0 0 0 0
+ 1 1 0 0 1 1 5 bank3 20 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 72 sdram_coverage::_vcs_unit__2559226825_sdram_coverage_Sdram_Coverage_fn_3 0 0 0 0 0 0 0
+
+ 10 sdram_addr 23 0 0 0 72 sdram_coverage::_vcs_unit__2559226825_sdram_coverage_Sdram_Coverage_fn_4 72 sdram_coverage::_vcs_unit__2559226825_sdram_coverage_Sdram_Coverage_fn_4 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 0 2 13 0 0 1 0 1 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 9 sdram_cmd 26 0 0 0 72 sdram_coverage::_vcs_unit__2559226825_sdram_coverage_Sdram_Coverage_fn_5 72 sdram_coverage::_vcs_unit__2559226825_sdram_coverage_Sdram_Coverage_fn_5 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 0 2 4 0 0 1 0 1 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 8 1 1 0 0 1 1 3 NOP 27 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 72 sdram_coverage::_vcs_unit__2559226825_sdram_coverage_Sdram_Coverage_fn_6 0 0 0 0 0 0 0
+ 1 1 0 0 1 1 6 ACTIVE 28 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 72 sdram_coverage::_vcs_unit__2559226825_sdram_coverage_Sdram_Coverage_fn_7 0 0 0 0 0 0 0
+ 1 1 0 0 1 1 4 READ 29 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 72 sdram_coverage::_vcs_unit__2559226825_sdram_coverage_Sdram_Coverage_fn_8 0 0 0 0 0 0 0
+ 1 1 0 0 1 1 5 WRITE 30 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 72 sdram_coverage::_vcs_unit__2559226825_sdram_coverage_Sdram_Coverage_fn_9 0 0 0 0 0 0 0
+ 1 1 0 0 1 1 14 BURSTTERMINATE 31 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 72 sdram_coverage::_vcs_unit__2559226825_sdram_coverage_Sdram_Coverage_fn_a 0 0 0 0 0 0 0
+ 1 1 0 0 1 1 8 RECHARGE 32 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 72 sdram_coverage::_vcs_unit__2559226825_sdram_coverage_Sdram_Coverage_fn_b 0 0 0 0 0 0 0
+ 1 1 0 0 1 1 11 AUTOREFRESH 33 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 72 sdram_coverage::_vcs_unit__2559226825_sdram_coverage_Sdram_Coverage_fn_c 0 0 0 0 0 0 0
+ 1 1 0 0 1 1 16 LOADMODEREGISTER 34 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 1 1 1 72 sdram_coverage::_vcs_unit__2559226825_sdram_coverage_Sdram_Coverage_fn_d 0 0 0 0 0 0 0
+
+ 24 read_write_x_bank_x_addr 0 38 0 0 0 0 3 2 0 1 -1 0 0 0
+ 0
+ 0
+ 0
+ 0 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 3 1 1 0 0 -1 0 0 1 1 17 address_permitted 43 0 1 0 1 1 1 0 1 0 1 1 1 72 sdram_coverage::_vcs_unit__2559226825_sdram_coverage_Sdram_Coverage_fn_0 0 72 sdram_coverage::_vcs_unit__2559226825_sdram_coverage_Sdram_Coverage_fn_e 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0
+ 1 1 0 0 -1 0 0 1 1 17 address_forbidden 44 0 1 0 1 1 1 0 1 0 1 1 1 72 sdram_coverage::_vcs_unit__2559226825_sdram_coverage_Sdram_Coverage_fn_f 0 73 sdram_coverage::_vcs_unit__2559226825_sdram_coverage_Sdram_Coverage_fn_10 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0
+ 1 2 0 0 -1 0 0 1 1 22 cmdsNotNeededOrIgnored 60 0 2 0 1 1 1 0 2 0 6 1 1 72 sdram_coverage::_vcs_unit__2559226825_sdram_coverage_Sdram_Coverage_fn_6 0 0 0 0 0 0 0
+ 1 1 72 sdram_coverage::_vcs_unit__2559226825_sdram_coverage_Sdram_Coverage_fn_7 0 0 0 0 0 0 0
+ 1 1 72 sdram_coverage::_vcs_unit__2559226825_sdram_coverage_Sdram_Coverage_fn_a 0 0 0 0 0 0 0
+ 1 1 72 sdram_coverage::_vcs_unit__2559226825_sdram_coverage_Sdram_Coverage_fn_b 0 0 0 0 0 0 0
+ 1 1 73 sdram_coverage::_vcs_unit__2559226825_sdram_coverage_Sdram_Coverage_fn_11 0 0 0 0 0 0 0
+ 1 1 72 sdram_coverage::_vcs_unit__2559226825_sdram_coverage_Sdram_Coverage_fn_c 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0
+
+end_coverage_group

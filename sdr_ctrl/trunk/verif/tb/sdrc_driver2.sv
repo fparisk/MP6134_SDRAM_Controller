@@ -45,14 +45,20 @@ class sdrcDrv2;
     endtask
 
 
-
-    task BurstWrite();
-        // input [31:0] Address;  // Deprecated for second project
-        // input [7:0]  bl;       // Deprecated for second project
-        input int unsigned Address;  
-        input int unsigned bl; 
+    // busrt Write main task
+    task BurstWrite(input int unsigned Address, input int unsigned bl, input int data_arg = -1); 
         int i;
+
+	logic [31:0] data;
+
         begin
+
+	    data = $random & 32'hFFFFFFFF;
+
+            if (data_arg != -1) begin
+                data = data_arg;
+            end
+
             // sb.dir.push_back(Address); // Deprecated for second project
             sb.burstLenght.push_back(bl);
             
@@ -63,8 +69,12 @@ class sdrcDrv2;
                 this.inft.wb_intf.wb_cyc_i        = 1;
                 this.inft.wb_intf.wb_we_i         = 1;
                 this.inft.wb_intf.wb_sel_i        = 4'b1111;
+
+                $display("-> ADDR+i:%b", Address[31:2]+i);
+                $display("-> ADDR:%b", Address[31:2]);
                 this.inft.wb_intf.wb_addr_i       = Address[31:2]+i;
-                this.inft.wb_intf.wb_dat_i        = $random & 32'hFFFFFFFF;
+                this.inft.wb_intf.wb_dat_i        = data;
+
                 // sb.store.push_back(this.inft.wb_intf.wb_dat_i); // Deprecated for second project
                 sb.dir.push_back(this.inft.wb_intf.wb_addr_i);
                 sb.store[this.inft.wb_intf.wb_addr_i] = this.inft.wb_intf.wb_dat_i;
@@ -128,26 +138,29 @@ class sdrcDrv2;
         begin
             if(rand_pco_stim.randomize())
             begin
-		        rand_pco_stim.generatePageCrossOverAddress();
+		rand_pco_stim.generatePageCrossOverAddress();
+
                 this.BurstWrite({rand_pco_stim.row, rand_pco_stim.bank, rand_pco_stim.column, 2'b00},   // address
                                 rand_pco_stim.burst_size);                                              // burst size
             end
         end
     endtask
 
-    // Write to address with Different Bank and Row
-    task BurstWrite_diff_col_row_bank(input int row_arg  = -1, input int bank_arg = -1, input int col_arg = -1);
+    // Write to address with Different Bank and Row, column and data
+    task BurstWrite_diff_col_row_bank_data(input int row_arg  = -1, input int bank_arg = -1, input int col_arg = -1, input int bl_arg = -1, input int data =-1);
         logic [11:0] row;
         logic [1:0]  bank;
         logic [7+this.inft.CNFG_COL_BITS : 0]  column;
+	logic [7:0] burst_size;
         
         begin
             if(diff_bank_row_stim.randomize())
             begin
                 diff_bank_row_stim.generateAddress();
-                bank   = diff_bank_row_stim.bank;
-                row    = diff_bank_row_stim.row;
-                //column = diff_bank_row_stim.column;
+                bank       = diff_bank_row_stim.bank;
+                row    	   = diff_bank_row_stim.row;
+		burst_size = diff_bank_row_stim.burst_size;
+                //column   = diff_bank_row_stim.column;
             end
 
             if (row_arg != -1) begin
@@ -160,11 +173,20 @@ class sdrcDrv2;
 
             if (col_arg != -1) begin
                 column = col_arg;
-            end            
+            end
 
-	    $display("############# BurstWrite_diff_col_row_bank, COL:%d", column);
+            if (bl_arg != -1) begin
+                burst_size = bl_arg;
+            end              
+
+	    $display("############# BurstWrite_diff_col_row_bank, COL:%b", column);
+            $display("############# BurstWrite_diff_col_row_bank, BANK:%b", bank);
+            $display("############# BurstWrite_diff_col_row_bank, ROW:%b", row);
+            $display("############# BurstWrite_diff_col_row_bank, ADDR:%b", {row, bank, column, 2'b00});
+
             this.BurstWrite({row, bank, column, 2'b00},           // address
-                            diff_bank_row_stim.burst_size);       // burst size
+                            burst_size,                           // burst size
+                            data);                                // data
         end
     endtask
 

@@ -21,7 +21,7 @@ class pageCrossOverStimulus;
   //assignations
   task generatePageCrossOverAddress();
     begin
-      this.bank = 2'b11;
+      this.bank = 2'b10;
       this.column_ms_byte = 8'hF0;
       this.column = this.column_ms_byte | this.column_ls_byte;
     end

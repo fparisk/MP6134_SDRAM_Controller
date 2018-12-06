@@ -1,6 +1,6 @@
 # Begin_DVE_Session_Save_Info
 # DVE restart session
-# Saved on Mon Dec 3 23:06:15 2018
+# Saved on Thu Dec 6 17:25:44 2018
 # Designs open: 1
 #   Sim: /mnt/vol_NFS_Zener/WD_ESPEC/fparis/MP6134_SDRAM_Controller/sdr_ctrl/trunk/verif/tb/simv
 # Toplevel windows open: 1
@@ -42,7 +42,6 @@ set DLPane.1 DLPane.1
 set Data.1 Data.1
 set Local.1 Local.1
 set Member.1 Member.1
-set Assertion.1 Assertion.1
 set Console.1 Console.1
 gui_sync_global -id ${TopLevel.1} -option true
 
@@ -129,13 +128,10 @@ gui_view_scroll -id ${Hier.1} -horizontal -set 0
 # Source 'Source.1'
 gui_src_value_annotate -id ${Source.1} -switch false
 gui_set_env TOGGLE::VALUEANNOTATE 0
-gui_open_source -id ${Source.1}  -replace -active _vcs_unit__2559226825 /mnt/vol_NFS_Zener/WD_ESPEC/fparis/MP6134_SDRAM_Controller/sdr_ctrl/trunk/verif/tb/../tb/sdram_interterface.sv
-gui_view_scroll -id ${Source.1} -vertical -set 0
+gui_open_source -id ${Source.1}  -replace -active _vcs_unit__2559226825 /mnt/vol_NFS_Zener/WD_ESPEC/fparis/MP6134_SDRAM_Controller/sdr_ctrl/trunk/verif/tb/../tb/sdrc_coverage.sv
+gui_view_scroll -id ${Source.1} -vertical -set 160
 gui_src_set_reusable -id ${Source.1}
 # Warning: Class view not found.
-
-# View 'Assertion.1'
-gui_switch_assert -id ${Assertion.1} -type assertion
 # Restore toplevel window zorder
 # The toplevel window could be closed if it has no view/pane
 if {[gui_exist_window -window ${TopLevel.1}]} {

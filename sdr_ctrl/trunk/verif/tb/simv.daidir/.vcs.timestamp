@@ -1,7 +1,8 @@
 2        
 0 sdrc_define.v
 0 /mnt/vol_NFS_Zener/tools/synopsys/apps/vcs-mx2/M-2017.03/etc/systemverilog/sdrc_define.v
-31
+32
++define+9_BIT_COL
 +define+SDR_32BIT
 +itf+/mnt/vol_NFS_Zener/tools/synopsys/apps/vcs-mx2/M-2017.03/linux64/lib/vcsdp_lite.tab
 +vcsd1
@@ -24,7 +25,7 @@
 -Mxcflags= -pipe -fPIC -I/mnt/vol_NFS_Zener/tools/synopsys/apps/vcs-mx2/M-2017.03/include
 -assert
 -debug_access+all
--f filelist_Proyecto2_test.f
+-f filelist_Proyecto3_test.f
 -full64
 -gen_obj
 -gui
@@ -36,8 +37,8 @@ svaext
 47
 sysc_uni_pwd=/mnt/vol_NFS_Zener/WD_ESPEC/fparis/MP6134_SDRAM_Controller/sdr_ctrl/trunk/verif/tb
 XMODIFIERS=@im=none
-XDG_SESSION_COOKIE=7d1e713e61d13a600c6dc60900000019-1543899042.399009-1449540041
-XAUTHORITY=/var/run/gdm/auth-for-ESTUDIANTES\fparis-X46vjz/database
+XDG_SESSION_COOKIE=7d1e713e61d13a600c6dc60900000019-1544109761.765379-35694813
+XAUTHORITY=/var/run/gdm/auth-for-ESTUDIANTES\fparis-6nioDA/database
 WINDOWPATH=1
 VMR_MODE_FLAG=64
 VCS_MX_HOME_INTERNAL=1
@@ -50,10 +51,10 @@ USERNAME=ESTUDIANTES\fparis
 UNAME=/bin/uname
 TOOL_HOME=/mnt/vol_NFS_Zener/tools/synopsys/apps/vcs-mx2/M-2017.03/linux64
 SYNOPSYS_HOME=/mnt/vol_NFS_Zener/tools/synopsys/apps/
-SSH_AUTH_SOCK=/tmp/keyring-BV2ola/socket.ssh
+SSH_AUTH_SOCK=/tmp/keyring-dTvbHz/socket.ssh
 SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
 SNPS_VCS_CLANG_PATH=/fs/src/interfaces/LLVM_Project/QSCM/opt/llvm-3.9.1/linux64
-SESSION_MANAGER=local/unix:@/tmp/.ICE-unix/20181,unix/unix:/tmp/.ICE-unix/20181
+SESSION_MANAGER=local/unix:@/tmp/.ICE-unix/27276,unix/unix:/tmp/.ICE-unix/27276
 SCRNAME=vcs
 SCRIPT_NAME=vcs
 QT_IM_MODULE=xim
@@ -64,25 +65,25 @@ OVA_UUM=0
 ORBIT_SOCKETDIR=/tmp/orbit-ESTUDIANTES\fparis
 LESSOPEN=||/usr/bin/lesspipe.sh %s
 LC_ALL=C
-KRB5CCNAME=FILE:/tmp/krb5cc_1160251947_nK1XQj
+KRB5CCNAME=FILE:/tmp/krb5cc_1160251947_kMO9Wd
 IMSETTINGS_MODULE=none
 IMSETTINGS_INTEGRATE_DESKTOP=yes
 HISTCONTROL=ignoredups
 G_BROKEN_FILENAMES=1
 GTK_RC_FILES=/etc/gtk/gtkrc:/home/local/ESTUDIANTES/fparis/.gtkrc-1.2-gnome2
-GNOME_KEYRING_SOCKET=/tmp/keyring-BV2ola/socket
+GNOME_KEYRING_SOCKET=/tmp/keyring-dTvbHz/socket
 GNOME_DESKTOP_SESSION_ID=this-is-deprecated
-GIO_LAUNCHED_DESKTOP_FILE_PID=21235
+GIO_LAUNCHED_DESKTOP_FILE_PID=30924
 GIO_LAUNCHED_DESKTOP_FILE=/usr/share/applications/gnome-terminal.desktop
 GDM_LANG=en_US.UTF-8
 GDM_KEYBOARD_LAYOUT=us
 GDMSESSION=gnome
 DESKTOP_SESSION=gnome
-DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-l2bTqisenM,guid=37e3f5b371881d7fff0ef9c7000045a2
+DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-YWGxqmbvMG,guid=a01adf106fa6df158343f96900061e7c
 CVS_RSH=ssh
 COLORTERM=gnome-terminal
 0
-32
+36
 1541688445 ../../rtl/core/sdrc_define.v
 1487217855 /mnt/vol_NFS_Zener/tools/synopsys/apps/vcs-mx2/M-2017.03/etc/sva/rec_ltl_classes_package.svp
 1541688445 ../../rtl/core/sdrc_xfr_ctl.v
@@ -97,27 +98,31 @@ COLORTERM=gnome-terminal
 1541688445 ../model/IS42VM16400K.V
 1541688445 ../model/mt48lc8m8a2.v
 1541688445 ../model/mt48lc2m32b2.v
-1543549403 ../tb/tb_top_proyecto2_test.sv
+1544133790 ../tb/tb_top_proyecto3_test.sv
 1543206742 ../tb/Clocks.sv
-1543900256 ../tb/assertions.sv
-1543387507 ../tb/whitebox_interface.sv
-1543903125 ../tb/Test_proyecto2.sv
-1543549403 ../tb/sdrc_environment2.sv
+1544138123 ../tb/assertions.sv
+1544138123 ../tb/whitebox_interface.sv
+1544139007 ../tb/Test_proyecto3.sv
+1544138123 ../tb/sdrc_environment2.sv
 1541688446 ../tb/sdrc_environment.sv
-1543904445 ../tb/sdrc_driver.sv
-1543903125 ../tb/pageCrossOverStimulus.sv
+1544138123 ../tb/sdrc_coverage.sv
+1544138123 ../tb/sdrc_driver2.sv
+1544138123 ../tb/sdrc_driver.sv
+1544128280 ../tb/pageCrossOverStimulus.sv
 1543815150 ../tb/addressStimulus.sv
-1543683971 ../tb/sdrc_monitor.sv
-1543387507 ../tb/sdrc_scoreboard.sv
-1541688446 ../tb/sdrc_interface.sv
+1544138123 ../tb/sdrc_monitor2.sv
+1544138123 ../tb/sdrc_monitor.sv
+1544138123 ../tb/sdrc_scoreboard2.sv
+1544138123 ../tb/sdrc_scoreboard.sv
+1544070690 ../tb/sdrc_interface.sv
 1543904445 ../tb/diffBankAndRowStimulus.sv
 1541688446 ../tb/wb_interface.sv
-1541688446 ../tb/sdram_interterface.sv
-1543815150 filelist_Proyecto2_test.f
+1544081534 ../tb/sdram_interterface.sv
+1544138123 filelist_Proyecto3_test.f
 1487217861 /mnt/vol_NFS_Zener/tools/synopsys/apps/vcs-mx2/M-2017.03/linux64/lib/vcsdp_lite.tab
 4
 0 
 1487220396 /mnt/vol_NFS_Zener/tools/synopsys/apps/vcs-mx2/M-2017.03/linux64/lib/libvirsim.so
 1487219634 /mnt/vol_NFS_Zener/tools/synopsys/apps/vcs-mx2/M-2017.03/linux64/lib/liberrorinf.so
 1487219608 /mnt/vol_NFS_Zener/tools/synopsys/apps/vcs-mx2/M-2017.03/linux64/lib/libsnpsmalloc.so
-1543904467 simv.daidir
+1544139023 simv.daidir
