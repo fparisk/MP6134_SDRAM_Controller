@@ -57,49 +57,49 @@ class sdram_coverage;
   endgroup
   
  
-  // covergroup Wishbone_Coverage @(intf.sys_clk);
+  covergroup Wishbone_Coverage @(intf.sys_clk);
 
-  //   wishbone_read_write	: coverpoint {intf.wb_intf.wb_stb_i, intf.wb_intf.wb_cyc_i, intf.wb_intf.wb_we_i}
-	// 	{
-	// 		bins wishbone_read  = {3'b110};
-	// 		bins wishbone_write = {3'b111};
-	// 	}
+    wishbone_read_write	: coverpoint {intf.wb_intf.wb_stb_i, intf.wb_intf.wb_cyc_i, intf.wb_intf.wb_we_i}
+		{
+			bins wishbone_read  = {3'b110};
+			bins wishbone_write = {3'b111};
+		}
 
 
-  //   `ifdef 8_BIT_COL
-  //       column	:	coverpoint intf.wb_intf.wb_addr_i[7:0];   // 8 bits para la columna
-  //       row		:  	coverpoint intf.wb_intf.wb_addr_i[21:10]; // 12 bits para la fila
-  //       bank	:	coverpoint intf.wb_intf.wb_addr_i[9:8]      // 2 bits para el bank 
-  //   `elsif 9_BIT_COL
-  //       column	:	coverpoint intf.wb_intf.wb_addr_i[8:0];
-  //       row		:  	coverpoint intf.wb_intf.wb_addr_i[22:11];
-  //       bank	:	coverpoint intf.wb_intf.wb_addr_i[10:9]
-  //   `elsif 10_BIT_COL
-  //       column	:	coverpoint intf.wb_intf.wb_addr_i[9:0];
-  //       row		:  	coverpoint intf.wb_intf.wb_addr_i[23:12];
-  //       bank	:	coverpoint intf.wb_intf.wb_addr_i[11:10]
-  //   `else
-  //       column	:	coverpoint intf.wb_intf.wb_addr_i[10:0];
-  //       row		:  	coverpoint intf.wb_intf.wb_addr_i[24:13];
-  //       bank	:	coverpoint intf.wb_intf.wb_addr_i[12:11]
-  //   `endif
-  //   {
-  //     bins bank0	= {0};
-  //     bins bank1	= {1};
-  //     bins bank2	= {2};
-  //     bins bank3	= {3};
-  //   }
+    `ifdef 8_BIT_COL
+        column	:	coverpoint intf.wb_intf.wb_addr_i[7:0];   // 8 bits para la columna
+        row		:  	coverpoint intf.wb_intf.wb_addr_i[21:10]; // 12 bits para la fila
+        bank	:	coverpoint intf.wb_intf.wb_addr_i[9:8]      // 2 bits para el bank 
+    `elsif 9_BIT_COL
+        column	:	coverpoint intf.wb_intf.wb_addr_i[8:0];
+        row		:  	coverpoint intf.wb_intf.wb_addr_i[22:11];
+        bank	:	coverpoint intf.wb_intf.wb_addr_i[10:9]
+    `elsif 10_BIT_COL
+        column	:	coverpoint intf.wb_intf.wb_addr_i[9:0];
+        row		:  	coverpoint intf.wb_intf.wb_addr_i[23:12];
+        bank	:	coverpoint intf.wb_intf.wb_addr_i[11:10]
+    `else
+        column	:	coverpoint intf.wb_intf.wb_addr_i[10:0];
+        row		:  	coverpoint intf.wb_intf.wb_addr_i[24:13];
+        bank	:	coverpoint intf.wb_intf.wb_addr_i[12:11]
+    `endif
+    {
+      bins bank0	= {0};
+      bins bank1	= {1};
+      bins bank2	= {2};
+      bins bank3	= {3};
+    }
 
-	// 	wb_all	: cross wishbone_read_write, row, column, bank;
+		wb_all	: cross wishbone_read_write, row, column, bank;
 
     
 
-  // endgroup
+  endgroup
     
   function new(virtual inft_sdrcntrl intf);
     this.intf = intf;
     Sdram_Coverage    =new();
-    //Wishbone_Coverage =new();
+    Wishbone_Coverage =new();
     // cov1 =new();
   endfunction
 
